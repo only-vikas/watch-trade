@@ -253,3 +253,172 @@ MIT License - Free to use and modify
 ---
 
 **Built with ❤️ using React and modern web technologies**
+
+
+
+
+4. For a given set of training data example, implement and demonstrate the Find-S algorithm to output a description of the set of all hypotheses consistent with the training examples.
+
+# Load training data
+data = [
+    ['Sunny', 'Warm', 'Normal', 'Strong', 'Warm', 'Same', 'Yes'],
+    ['Sunny', 'Warm', 'High', 'Strong', 'Warm', 'Same', 'Yes'],
+    ['Rainy', 'Cold', 'High', 'Strong', 'Warm', 'Change', 'No'],
+    ['Sunny', 'Warm', 'High', 'Strong', 'Cool', 'Change', 'Yes']
+]
+
+# Initialize hypothesis with most specific values
+hypothesis = ['0'] * (len(data[0]) - 1)
+
+print("Initial Hypothesis:", hypothesis)
+
+# Apply Find-S
+for example in data:
+    if example[-1] == "Yes":  # Only positive examples
+        for i in range(len(hypothesis)):
+            if hypothesis[i] == '0':
+                hypothesis[i] = example[i]
+            elif hypothesis[i] != example[i]:
+                hypothesis[i] = '?'
+
+print("\nFinal Hypothesis:", hypothesis)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Explanation
+data = [
+    ['Sunny', 'Warm', 'Normal', 'Strong', 'Warm', 'Same', 'Yes'],
+    ['Sunny', 'Warm', 'High', 'Strong', 'Warm', 'Same', 'Yes'],
+    ['Rainy', 'Cold', 'High', 'Strong', 'Warm', 'Change', 'No'],
+    ['Sunny', 'Warm', 'High', 'Strong', 'Cool', 'Change', 'Yes']
+]
+This is the training dataset.
+Each row represents one training example.
+The last column represents the target/class label:
+Yes → Positive example
+No → Negative example
+
+hypothesis = ['0'] * (len(data[0]) - 1)
+
+Explanation:
+len(data[0]) → number of columns in first row = 7
+-1 → remove the target column
+So number of attributes = 6
+['0'] * 6 creates:
+['0','0','0','0','0','0']
+Meaning:
+0 represents the most specific hypothesis (no information yet).
+
+print("Initial Hypothesis:", hypothesis)
+
+Output:
+Initial Hypothesis: ['0','0','0','0','0','0']
+
+for example in data:
+Iterates through each row of dataset.
+example stores one training instance at a time.
+Check if example is positive:
+
+if example[-1] == "Yes":
+
+Explanation:
+example[-1] → last element of row (class label)
+If label = Yes, it is a positive example
+Find-S only learns from positive examples
+
+
+
+
+Compare attributes:
+
+for i in range(len(hypothesis)):
+
+Loops through each attribute position
+
+i represents attribute index (0 to 5)
+First positive example update
+if hypothesis[i] == '0':
+hypothesis[i] = example[i]
+
+Example:
+Hypothesis = ['0','0','0','0','0','0']
+Example = ['Sunny','Warm','Normal','Strong','Warm','Same']
+After update:
+['Sunny','Warm','Normal','Strong','Warm','Same']
+Generalization step:
+elif hypothesis[i] != example[i]:
+hypothesis[i] = '?'
+
+Explanation:
+If hypothesis value differs from example value
+Replace with ?
+Meaning:
+? = any value allowed
+Example:
+Warm vs Cool → ?
+
+Print final hypothesis
+
+print("\nFinal Hypothesis:", hypothesis)
+
+Output:
+Final Hypothesis:
+['Sunny', 'Warm', '?', 'Strong', '?', '?']
+
+Meaning the learned concept is:
+Sky = Sunny
+AirTemp = Warm
+Humidity = Any
+Wind = Strong
+Water = Any
+Forecast = Any
+
+Very Short Explanation:
+
+ (Initialize hypothesis with most specific values (0).
+Consider only positive examples.
+Compare attributes with hypothesis.
+If different → replace with ?.
+Final hypothesis becomes the most specific hypothesis consistent with positive examples.
+
+
+Python Program (Reading from Excel)
+import pandas as pd
+
+# Load Excel file
+df = pd.read_excel("data.xlsx")
+
+# Convert dataframe to list
+data = df.values.tolist()
+
+# Initialize hypothesis
+hypothesis = ['0'] * (len(data[0]) - 1)
+
+print("Initial Hypothesis:", hypothesis)
+
+# Apply Find-S Algorithm
+for example in data:
+    if example[-1] == "Yes":
+        for i in range(len(hypothesis)):
+            if hypothesis[i] == '0':
+                hypothesis[i] = example[i]
+            elif hypothesis[i] != example[i]:
+                hypothesis[i] = '?'
+
+print("\nFinal Hypothesis:", hypothesis)
