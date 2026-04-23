@@ -2,6 +2,11 @@
 
 A sophisticated dual-mode application combining a **Watch Trading Simulator** with a **Luxury Watch E-Commerce Storefront**. Built with React, featuring Hamilton-inspired luxury design aesthetics.
 
+<img width="1215" height="601" alt="image" src="https://github.com/user-attachments/assets/1ec7ecd9-82ad-4f16-9ce0-f52440988568" />
+
+
+
+
 ## ✨ Features
 
 ### Trading Simulator
@@ -28,6 +33,9 @@ The e-commerce section features a **Hamilton-inspired luxury aesthetic**:
 - **Animations**: Smooth transitions, hover effects, and micro-interactions
 - **Layout**: Full-screen hero sections, grid-based product displays
 - **Details**: Gradient text effects, custom form styling, elegant borders
+
+<img width="1920" height="991" alt="Screenshot watch trade" src="https://github.com/user-attachments/assets/0e6d217d-d67a-4e29-9599-6e3546d76d9f" />
+
 
 ## 📁 Project Structure
 
